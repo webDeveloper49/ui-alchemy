@@ -8,7 +8,6 @@ export default defineConfig({
   plugins: [react(), tailwindcss(), basicSsl()],
   server: {
     host: true,
-    https:true,
   },
   base: '/ui-alchemy/'
 })
