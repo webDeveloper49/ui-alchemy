@@ -1,0 +1,42 @@
+@import "tailwindcss";
+.container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-inline: 16px solid #3498db; /* Blue */
+  border-block: 16px solid red; /* Blue */
+  
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  animation: spin 2s linear infinite, bubblyInOut 2s linear infinite;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadIcon {
+  display: inline-block;
+  animation: bubblyInOut 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes bubblyInOut {
+  0%, 100% {
+    font-size: 30px;
+  }
+  50% {
+    font-size: 80px;
+  }
+}

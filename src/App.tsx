@@ -1,16 +1,24 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './App.css'
-import { faFaceGrinStars } from '@fortawesome/free-regular-svg-icons'
+import { useSelector } from 'react-redux'
+import { type RootState } from './app/store.ts'
+import { ThemeProvider } from '@mui/material'
 
-function App() {
-  // Beat, BeatFade, Bounce, Fade, Flip, Shake, Spin, Spin Reverse, Spin Pulse
+import CssBaseline from "@mui/material/CssBaseline"
+import { HelmetProvider } from 'react-helmet-async'
+import { AppRouter } from './routes.tsx'
+import { createAppTheme } from './styles/themeFactory.ts'
+import { createMuiTheme } from './styles/muiTheme.ts'
+
+export default function AppThemeProvider() {
+  const { mode, accent } = useSelector((state: RootState) => state.theme);
+  const appTheme = createAppTheme(mode, accent);
+  const muiTheme = createMuiTheme(appTheme);
+
   return (
-   <div className="container">
-    <div className="loader">
-      <FontAwesomeIcon icon={faFaceGrinStars} className="loadIcon"/>
-    </div>
-   </div>
-  )
+    <ThemeProvider theme={muiTheme}>
+      <CssBaseline />
+      <HelmetProvider>
+        <AppRouter />
+      </HelmetProvider>
+    </ThemeProvider>
+  );
 }
-
-export default App
