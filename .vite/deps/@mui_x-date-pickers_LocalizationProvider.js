@@ -1,0 +1,125 @@
+import { r as __toESM } from "./chunk-BoAXSpZd.js";
+import { Tt as require_prop_types } from "./styled-DL-ql2_w.js";
+import { t as require_react } from "./react.js";
+import { t as _extends } from "./extends-tE5si-qC.js";
+import { t as require_jsx_runtime } from "./jsx-runtime-CVCLiDPH.js";
+import { f as useThemeProps } from "./styles-BmNoiy71.js";
+import { t as _objectWithoutPropertiesLoose } from "./objectWithoutPropertiesLoose-DwrrYcIJ.js";
+//#region node_modules/@mui/x-date-pickers/esm/LocalizationProvider/LocalizationProvider.js
+var import_react = /* @__PURE__ */ __toESM(require_react(), 1);
+var import_prop_types = /* @__PURE__ */ __toESM(require_prop_types(), 1);
+var import_jsx_runtime = require_jsx_runtime();
+var _excluded = ["localeText"];
+var PickerAdapterContext = /* @__PURE__ */ import_react.createContext(null);
+PickerAdapterContext.displayName = "PickerAdapterContext";
+var MuiPickersAdapterContext = PickerAdapterContext;
+/**
+* Demos:
+*
+* - [Date format and localization](https://mui.com/x/react-date-pickers/adapters-locale/)
+* - [Calendar systems](https://mui.com/x/react-date-pickers/calendar-systems/)
+* - [Translated components](https://mui.com/x/react-date-pickers/localization/)
+* - [UTC and timezones](https://mui.com/x/react-date-pickers/timezone/)
+*
+* API:
+*
+* - [LocalizationProvider API](https://mui.com/x/api/date-pickers/localization-provider/)
+*/
+var LocalizationProvider = function LocalizationProvider(inProps) {
+	const { localeText: inLocaleText } = inProps, otherInProps = _objectWithoutPropertiesLoose(inProps, _excluded);
+	const { adapter: parentAdapter, localeText: parentLocaleText } = import_react.useContext(PickerAdapterContext) ?? {
+		utils: void 0,
+		adapter: void 0,
+		localeText: void 0
+	};
+	const { children, dateAdapter: DateAdapter, dateFormats, dateLibInstance, adapterLocale, localeText: themeLocaleText } = useThemeProps({
+		props: otherInProps,
+		name: "MuiLocalizationProvider"
+	});
+	const localeText = import_react.useMemo(() => _extends({}, themeLocaleText, parentLocaleText, inLocaleText), [
+		themeLocaleText,
+		parentLocaleText,
+		inLocaleText
+	]);
+	const adapter = import_react.useMemo(() => {
+		if (!DateAdapter) {
+			if (parentAdapter) return parentAdapter;
+			return null;
+		}
+		const dateAdapter = new DateAdapter({
+			locale: adapterLocale,
+			formats: dateFormats,
+			instance: dateLibInstance
+		});
+		if (!dateAdapter.isMUIAdapter) throw new Error([
+			"MUI X: The date adapter should be imported from `@mui/x-date-pickers` or `@mui/x-date-pickers-pro`, not from `@date-io`",
+			"For example, `import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'` instead of `import AdapterDayjs from '@date-io/dayjs'`",
+			"More information on the installation documentation: https://mui.com/x/react-date-pickers/quickstart/#installation"
+		].join(`\n`));
+		return dateAdapter;
+	}, [
+		DateAdapter,
+		adapterLocale,
+		dateFormats,
+		dateLibInstance,
+		parentAdapter
+	]);
+	const defaultDates = import_react.useMemo(() => {
+		if (!adapter) return null;
+		return {
+			minDate: adapter.date("1900-01-01T00:00:00.000"),
+			maxDate: adapter.date("2099-12-31T00:00:00.000")
+		};
+	}, [adapter]);
+	const contextValue = import_react.useMemo(() => {
+		return {
+			utils: adapter,
+			adapter,
+			defaultDates,
+			localeText
+		};
+	}, [
+		defaultDates,
+		adapter,
+		localeText
+	]);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PickerAdapterContext.Provider, {
+		value: contextValue,
+		children
+	});
+};
+LocalizationProvider.displayName = "LocalizationProvider";
+LocalizationProvider.propTypes = {
+	adapterLocale: import_prop_types.default.any,
+	children: import_prop_types.default.node,
+	dateAdapter: import_prop_types.default.func,
+	dateFormats: import_prop_types.default.shape({
+		dayOfMonth: import_prop_types.default.string,
+		dayOfMonthFull: import_prop_types.default.string,
+		fullDate: import_prop_types.default.string,
+		fullTime12h: import_prop_types.default.string,
+		fullTime24h: import_prop_types.default.string,
+		hours12h: import_prop_types.default.string,
+		hours24h: import_prop_types.default.string,
+		keyboardDate: import_prop_types.default.string,
+		keyboardDateTime12h: import_prop_types.default.string,
+		keyboardDateTime24h: import_prop_types.default.string,
+		meridiem: import_prop_types.default.string,
+		minutes: import_prop_types.default.string,
+		month: import_prop_types.default.string,
+		monthShort: import_prop_types.default.string,
+		normalDate: import_prop_types.default.string,
+		normalDateWithWeekday: import_prop_types.default.string,
+		seconds: import_prop_types.default.string,
+		shortDate: import_prop_types.default.string,
+		weekday: import_prop_types.default.string,
+		weekdayShort: import_prop_types.default.string,
+		year: import_prop_types.default.string
+	}),
+	dateLibInstance: import_prop_types.default.any,
+	localeText: import_prop_types.default.object
+};
+//#endregion
+export { LocalizationProvider, MuiPickersAdapterContext };
+
+//# sourceMappingURL=@mui_x-date-pickers_LocalizationProvider.js.map

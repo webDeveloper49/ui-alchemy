@@ -12,10 +12,14 @@ export default defineConfig({
     host: true,
   },
   base: '/ui-alchemy/',
+  optimizeDeps: {
+    include: ['@emotion/react', '@emotion/styled'],
+  },
   // ── Tell Vite where to find .env files for import.meta.env ───────────────
     envDir: 'environment',
 
     resolve: {
+      dedupe: ['@emotion/react', '@emotion/styled', '@mui/material'],
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
         "@utils": fileURLToPath(new URL("./src/utils", import.meta.url)),

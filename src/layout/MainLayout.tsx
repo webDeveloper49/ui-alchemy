@@ -1,53 +1,120 @@
-import { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
-
-import './MainLayout.css';
+import React from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Box, CssBaseline, Drawer, useMediaQuery, useTheme } from '@mui/material';
+import { Helmet } from 'react-helmet-async';
 import SidebarMenu from './Sidebar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import PageHeader  from './PageHeader';
 import { useLogOutMutation } from '../api/authApi';
 import { useDispatch } from 'react-redux';
 import { clearUser } from '../app/authSlice';
 
+const DRAWER_FULL = 252;
+const DRAWER_MINI = 68;
+
+const ROUTE_TITLES: Record<string, string> = {
+  '/':                  'Dashboard',
+  '/dashboard':         'Dashboard',
+  '/customised-loader': 'Custom Loader',
+  '/unauthorized':      'Unauthorized',
+};
+const getTitle = (pathname: string) =>
+  ROUTE_TITLES[pathname] ??
+  (Object.keys(ROUTE_TITLES).find(r => pathname.startsWith(r) && r !== '/')
+    ? ROUTE_TITLES[Object.keys(ROUTE_TITLES).find(r => pathname.startsWith(r) && r !== '/')!]
+    : 'UI-Alchemy');
+
+const CYAN    = '#00b4d8';
+const MAGENTA = '#d400c8';
+
 export default function MainLayout() {
-  const [collapsed, setCollapsed] = useState(false);
-  const dispatch = useDispatch();
+  const theme    = useTheme();
   const navigate = useNavigate();
-  
- // ── Logout: Firebase signOut (via RTK Query) + clear Redux ────────────────
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  const [open, setOpen] = React.useState(!isMobile);
+  React.useEffect(() => { setOpen(!isMobile); }, [isMobile]);
+  React.useEffect(() => { if (isMobile) setOpen(false); }, [location.pathname]);
+
   const [logOut] = useLogOutMutation();
- 
   const handleLogout = async () => {
-    try {
-      await logOut();
-    } finally {
+    try { await logOut(); } finally {
       dispatch(clearUser());
       navigate('/login', { replace: true });
     }
   };
 
-  return (
-    <div className="main-layout">
-      <div className={`sidebar-container ${collapsed ? 'collapsed' : ''}`}>
-        <SidebarMenu collapsed={collapsed} setCollapsed={setCollapsed} />
-        <button
-          className="sidebar-toggle"
-          onClick={() => setCollapsed(prev => !prev)}
-        >
-          {collapsed ? '»' : '«'}
-        </button>
-      </div>
+  const title       = getTitle(location.pathname);
+  const drawerWidth = isMobile ? DRAWER_FULL : (open ? DRAWER_FULL : DRAWER_MINI);
 
-      <div className="content-container">
-        <div className="app-header">
-            <FontAwesomeIcon 
-                icon={faArrowRightFromBracket} 
-                className='logoutIcon'
-                onClick={()=>{handleLogout()}}
-            />
-        </div>
-        <Outlet /> {/* Dynamic routing content will render here */}
-      </div>
-    </div>
+  return (
+    <>
+      <Helmet><title>UI-Alchemy | {title}</title></Helmet>
+
+      <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: '#f2f4fb' }}>
+        <CssBaseline />
+
+        {/* Subtle background dot grid */}
+        <Box sx={{
+          position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0,
+          backgroundImage: 'radial-gradient(circle, rgba(0,180,216,0.10) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+          opacity: 0.7,
+        }} />
+
+        {/* Sidebar Drawer */}
+        <Drawer
+          variant={isMobile ? 'temporary' : 'permanent'}
+          open={isMobile ? open : true}
+          onClose={() => isMobile && setOpen(false)}
+          ModalProps={{ keepMounted: true }}
+          sx={{
+            width: drawerWidth, flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              width: drawerWidth,
+              overflowX: 'hidden',
+              transition: 'width 0.25s cubic-bezier(0.4,0,0.2,1)',
+              boxSizing: 'border-box',
+              bgcolor: '#ffffff',
+              border: 'none',
+              borderRight: '1px solid #e4e8f5',
+              boxShadow: '3px 0 20px rgba(0,180,216,0.08)',
+              '&::after': {
+                content: '""',
+                position: 'absolute', top: 0, right: 0,
+                width: '2px', height: '100%',
+                background: `linear-gradient(180deg, transparent 0%, ${CYAN} 35%, ${MAGENTA} 70%, transparent 100%)`,
+                opacity: 0.5,
+              },
+            },
+          }}
+        >
+          <SidebarMenu
+            collapsed={!open && !isMobile}
+            setCollapsed={(st) => setOpen(!st)}
+            onToggle={() => setOpen(v => !v)}
+            isMobile={isMobile}
+          />
+        </Drawer>
+
+        {/* Main content */}
+        <Box component="main" sx={{
+          flexGrow: 1, minHeight: '100vh', position: 'relative', zIndex: 1,
+          display: 'flex', flexDirection: 'column', minWidth: 0,
+          transition: 'margin 0.25s cubic-bezier(0.4,0,0.2,1)',
+        }}>
+          <PageHeader
+            title={title}
+            onLogout={handleLogout}
+            onMenuToggle={() => setOpen(v => !v)}
+            sidebarOpen={open}
+          />
+          <Box sx={{ flex: 1, overflow: 'hidden' }}>
+            <Outlet />
+          </Box>
+        </Box>
+      </Box>
+    </>
   );
 }

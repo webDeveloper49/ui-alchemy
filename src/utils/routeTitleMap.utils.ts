@@ -1,21 +1,7 @@
-import { MENUITEMS } from "../constants/Menu.constants";
-
-type RouteMap = Record<string, string>;
-
-export const getRouteTitleMap = (): RouteMap => {
-  const map: RouteMap = {};
-
-  const traverse = (items: any[]) => {
-    items.forEach(item => {
-      if (item.route && item.label) {
-        map[item.route] = item.label;
-      }
-      if (item.children) {
-        traverse(item.children);
-      }
-    });
-  };
-
-  traverse(MENUITEMS);
-  return map;
-};
+// Static route title map — replaces dynamic menu-based version
+export const getRouteTitleMap = (): Record<string, string> => ({
+  '/':                  'Dashboard',
+  '/dashboard':         'Dashboard',
+  '/customised-loader': 'Custom Loader',
+  '/unauthorized':      'Unauthorized',
+});

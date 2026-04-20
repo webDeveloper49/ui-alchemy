@@ -1,90 +1,24 @@
-import { Box, Typography, useTheme, alpha, Button } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-
-library.add(fas);
-
+const CYAN = '#00b4d8', MAGENTA = '#d400c8';
 export default function NotFound() {
-  const theme    = useTheme();
-  const p        = theme.palette;
   const navigate = useNavigate();
-
   return (
-    <Box sx={{
-      display:        'flex',
-      flexDirection:  'column',
-      alignItems:     'center',
-      justifyContent: 'center',
-      minHeight:      '98vh',
-      width:          '100%',
-      textAlign:      'center',
-      px:             { xs: 2, sm: 4 },
-      py:             { xs: 6, sm: 8 },
-      bgcolor:        p.background.default,
-    }}>
-
-      {/* Icon */}
-      <Box sx={{
-        width:          72,
-        height:         72,
-        borderRadius:   `${theme.shape.borderRadius * 2}px`,
-        bgcolor:        alpha(p.error.main, 0.1),
-        border:         `1px solid ${alpha(p.error.main, 0.25)}`,
-        display:        'flex',
-        alignItems:     'center',
-        justifyContent: 'center',
-        mb:             3,
-      }}>
-        <FontAwesomeIcon
-          icon={['fas', 'triangle-exclamation']}
-          style={{ fontSize: '1.75rem', color: p.error.main }}
-        />
-      </Box>
-
-      {/* 404 */}
-      <Typography sx={{
-        fontSize:      { xs: '4rem', sm: '5rem' },
-        fontWeight:    800,
-        color:         p.text.primary,
-        letterSpacing: '-3px',
-        lineHeight:    1,
-      }}>
+    <Box sx={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', minHeight:'85vh', textAlign:'center', px:3 }}>
+      <Box sx={{ position:'absolute', width:360, height:360, borderRadius:'50%', background:`radial-gradient(circle, rgba(0,180,216,0.08) 0%, transparent 70%)`, pointerEvents:'none' }} />
+      <Typography sx={{ fontFamily:'Orbitron,sans-serif', fontWeight:900, fontSize:{xs:'5rem',sm:'8rem'}, lineHeight:1, background:`linear-gradient(135deg,${CYAN},${MAGENTA})`, WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', mb:1, letterSpacing:'-4px' }}>
         404
       </Typography>
-
-      {/* Title */}
-      <Typography sx={{
-        fontSize:   { xs: 18, sm: 20 },
-        fontWeight: 600,
-        color:      p.text.primary,
-        mt:         1,
-      }}>
-        Page not found
+      <Box sx={{ width:80, height:3, background:`linear-gradient(90deg,${CYAN},${MAGENTA})`, mb:3, borderRadius:2 }} />
+      <Typography sx={{ fontFamily:'Orbitron,sans-serif', fontSize:{xs:'0.95rem',sm:'1.1rem'}, fontWeight:700, color:'#0d0d2b', letterSpacing:'0.15em', mb:1.5 }}>
+        SIGNAL LOST
       </Typography>
-
-      {/* Description */}
-      <Typography sx={{
-        fontSize:   { xs: 13, sm: 14 },
-        color:      p.text.secondary,
-        mt:         1,
-        maxWidth:   380,
-        lineHeight: 1.7,
-      }}>
-        The page you're looking for doesn't exist or you don't have permission to access it.
+      <Typography sx={{ fontSize:'0.88rem', color:'#7880a0', fontFamily:'Exo 2,sans-serif', maxWidth:340, lineHeight:1.8, mb:4 }}>
+        The page you're looking for doesn't exist or has been moved.
       </Typography>
-
-      {/* Action */}
-      <Box sx={{ mt: 3 }}>
-        <Button
-          variant="contained"
-          // icon={<FontAwesomeIcon icon={['fas', 'arrow-left']} style={{ fontSize: '0.8rem' }} />}
-          onClick={() => navigate('/')}
-        >
-          Back to Home
-        </Button>
-      </Box>
+      <Button onClick={()=>navigate('/')} sx={{ fontFamily:'Orbitron,sans-serif', fontWeight:700, fontSize:'0.75rem', letterSpacing:'0.15em', px:4, py:1.5, background:`linear-gradient(135deg,${CYAN},${MAGENTA})`, color:'#fff', borderRadius:2, boxShadow:`0 4px 20px rgba(0,180,216,0.35)`, '&:hover':{transform:'translateY(-2px)', boxShadow:`0 8px 30px rgba(0,180,216,0.45)`}, transition:'all 0.2s' }}>
+        RETURN TO DASHBOARD
+      </Button>
     </Box>
   );
 }
