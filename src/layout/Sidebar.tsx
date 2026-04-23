@@ -6,11 +6,14 @@ import {
 } from '@mui/material';
 import DashboardIcon    from '@mui/icons-material/DashboardOutlined';
 import AutoAwesomeIcon  from '@mui/icons-material/AutoAwesome';
-import LoopIcon         from '@mui/icons-material/Loop';
+
 import ExpandLessIcon   from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon   from '@mui/icons-material/ExpandMore';
 import ChevronLeftIcon  from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import LoopIcon from '@mui/icons-material/Loop';
+import AgricultureIcon from '@mui/icons-material/Agriculture';
+import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 
 interface Props {
   collapsed:    boolean;
@@ -30,6 +33,12 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Dashboard',          icon: <DashboardIcon />, route: '/dashboard' },
   { label: 'Custom Components',  icon: <AutoAwesomeIcon />, children: [
     { label: 'Loader', icon: <LoopIcon />, route: '/customised-loader' },
+    { label: 'SVG', icon: <AgricultureIcon/>, route:'/customised-svg'},
+  ]},
+  { label: 'Tutorials',  icon: <AutoAwesomeIcon />, children: [
+    { label: 'SVG Filters', icon: <AgricultureIcon/>, route:'/svg-filters'},
+    { label: 'Advanced SVG', icon:<AutoFixHighIcon/>, route:'/advanced-svg'},
+    { label: 'SVG Exercises', icon:<AutoFixHighIcon/>, route:'/svg-exercises'},
   ]},
 ];
 
@@ -43,8 +52,15 @@ export default function SidebarMenu({ collapsed, onToggle, isMobile }: Props) {
   const location = useLocation();
   const [openGroups, setOpenGroups] = React.useState<Record<string, boolean>>({});
 
-  const toggleGroup = (label: string) =>
-    setOpenGroups(prev => ({ ...prev, [label]: !prev[label] }));
+  const toggleGroup = (label: string) => {
+    setOpenGroups(prev => {
+      // if already open → close it
+      if (prev[label]) return {};
+
+      // else → open only this one
+      return { [label]: true };
+    });
+  };
 
   const isActive = (path?: string) =>
     path ? (path === '/' ? location.pathname === '/' : location.pathname.startsWith(path)) : false;
@@ -53,6 +69,16 @@ export default function SidebarMenu({ collapsed, onToggle, isMobile }: Props) {
     item.children?.some(c => c.route && location.pathname.startsWith(c.route)) ?? false;
 
   const mini = collapsed && !isMobile;
+
+  React.useEffect(() => {
+    const activeGroup = NAV_ITEMS.find(item =>
+      item.children?.some(c => c.route && location.pathname.startsWith(c.route))
+    );
+
+    if (activeGroup) {
+      setOpenGroups({ [activeGroup.label]: true });
+    }
+  }, [location.pathname]);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', bgcolor: '#fff' }}>
@@ -138,7 +164,7 @@ export default function SidebarMenu({ collapsed, onToggle, isMobile }: Props) {
             const active      = isActive(item.route);
             const groupActive = isGroupActive(item);
             const hasKids     = !!item.children?.length;
-            const isOpen      = openGroups[item.label] ?? groupActive;
+            const isOpen = !!openGroups[item.label];
             const lit         = active || groupActive;
 
             const btn = (
@@ -221,13 +247,22 @@ export default function SidebarMenu({ collapsed, onToggle, isMobile }: Props) {
                               '&:hover': { bgcolor: 'rgba(212,0,200,0.05)', border: '1px solid rgba(212,0,200,0.15)', transform: 'translateX(2px)' },
                             }}
                           >
-                            <ListItemIcon sx={{ minWidth: 28 }}>
+                            {/* <ListItemIcon sx={{ minWidth: 28 }}>
                               <Box sx={{
                                 width: ca ? 7 : 5, height: ca ? 7 : 5, borderRadius: '50%',
                                 bgcolor: ca ? MAGENTA : '#c8ceea',
                                 boxShadow: ca ? `0 0 6px ${MAGENTA}` : 'none',
                                 transition: 'all 0.2s',
                               }} />
+                            </ListItemIcon> */}
+
+                            <ListItemIcon sx={{
+                              minWidth: mini ? 'unset' : 36,
+                              color: lit ? MAGENTA : '#9ca3c8',
+                              '& svg': { fontSize: 20, filter: lit ? `drop-shadow(0 0 4px ${MAGENTA})` : 'none', transition: 'all 0.2s' },
+                              transition: 'color 0.2s',
+                            }}>
+                              {child.icon}
                             </ListItemIcon>
                             <ListItemText
                               primary={child.label}

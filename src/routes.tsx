@@ -1,4 +1,3 @@
-import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MainLayout        from './layout/MainLayout';
 import LoginPage         from './pages/Login';
@@ -7,6 +6,10 @@ import NotFound          from './pages/NotFound';
 import UnauthorizedPage  from './pages/UnauthorizedPage';
 import CustomisedLoader  from './pages/customisedStyles/CustomisedLoader';
 import { AuthRoute, AuthorizedRoute } from './ProtectedRoute';
+import AdvancedSVG from './pages/svg/AdvancedSVG';
+import SVGFilters from './pages/svg/SvgFilters';
+import CustomisedSVG from './pages/customisedStyles/CustomisedSVG';
+import SVGExercises from './pages/svg/SVGExercises';
 
 // ─── Manual static routes (no dynamic menu generation) ───────────────────────
 const router = createBrowserRouter(
@@ -47,6 +50,39 @@ const router = createBrowserRouter(
           element: (
             <AuthorizedRoute>
               <CustomisedLoader />
+            </AuthorizedRoute>
+            
+          ),
+        },
+        {
+          path: 'customised-svg',
+          element: (
+            <AuthorizedRoute>
+              <CustomisedSVG />
+            </AuthorizedRoute>
+          ),
+        },
+        {
+          path: 'svg-filters',
+          element: (
+            <AuthorizedRoute>
+              <SVGFilters />
+            </AuthorizedRoute>
+          ),
+        },
+        {
+          path: 'advanced-svg',
+          element: (
+            <AuthorizedRoute>
+              <AdvancedSVG />
+            </AuthorizedRoute>
+          ),
+        },
+        {
+          path: 'svg-exercises',
+          element: (
+            <AuthorizedRoute>
+              <SVGExercises />
             </AuthorizedRoute>
           ),
         },

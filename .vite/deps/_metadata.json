@@ -2,7 +2,7 @@
   "hash": "5d6a04ad",
   "configHash": "a3c494b4",
   "lockfileHash": "718c88af",
-  "browserHash": "f524ca58",
+  "browserHash": "907e0674",
   "optimized": {
     "@fortawesome/free-regular-svg-icons": {
       "src": "../../node_modules/@fortawesome/free-regular-svg-icons/index.mjs",
@@ -14,6 +14,12 @@
       "src": "../../node_modules/@fortawesome/react-fontawesome/dist/index.js",
       "file": "@fortawesome_react-fontawesome.js",
       "fileHash": "6e47bf32",
+      "needsInterop": false
+    },
+    "@mui/icons-material/Album": {
+      "src": "../../node_modules/@mui/icons-material/esm/Album.js",
+      "file": "@mui_icons-material_Album.js",
+      "fileHash": "b796cc36",
       "needsInterop": false
     },
     "@mui/icons-material/AutoAwesome": {

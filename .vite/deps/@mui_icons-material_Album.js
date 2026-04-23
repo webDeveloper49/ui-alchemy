@@ -1,0 +1,8 @@
+"use client";
+import { t as createSvgIcon } from "./createSvgIcon-DuZpWLrI.js";
+import { t as require_jsx_runtime } from "./jsx-runtime-CVCLiDPH.js";
+var Album_default = createSvgIcon(/* @__PURE__ */ (0, require_jsx_runtime().jsx)("path", { d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5m0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1" }), "Album");
+//#endregion
+export { Album_default as default };
+
+//# sourceMappingURL=@mui_icons-material_Album.js.map

@@ -1,0 +1,15 @@
+@use '../../../styles/neonColorPalette' as *;
+.my-container {
+    height: 100%;
+    padding-inline: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0px; // optional spacing
+}
+
+.svg-item {
+    width: 100%;
+    aspect-ratio: 1 / 1; 
+    display: block; // removes inline gap issue
+    border: 2px solid $neonBrightYellow;
+}

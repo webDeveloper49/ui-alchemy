@@ -1,0 +1,557 @@
+// ─── Neon Palette ────────────────────────────────────────────────────────────
+// Greens
+$neonGreen:         rgb(57, 255, 20);
+$neonSpringGreen:   rgb(0, 255, 127);
+$neonToxicGreen:    rgb(27, 255, 0);
+$neonLimeGreen:     rgb(102, 255, 0);
+$neonAquaGreen:     rgb(0, 255, 166);
+$neonSoftGreen:     rgb(34, 197, 94);
+$neonMintGreen:     rgb(74, 222, 128);
+$neonDeepGreen:     rgb(22, 163, 74);
+$neonEmeraldGreen:  rgb(52, 211, 153);
+
+// Blues & Cyan
+$neonElectricCyan:  rgb(0, 245, 255);
+$neonBrightCyan:    rgb(15, 240, 252);
+$neonSkyCyan:       rgb(0, 229, 255);
+$neonblue:          rgb(0, 191, 255);
+$neonElectricBlue:  rgb(30, 144, 255);
+$neonIndigoBlue:    rgb(41, 121, 255);
+$neonSky:           rgb(56, 189, 248);
+$neonBrightBlue:    rgb(14, 165, 233);
+$neonSoftCyan:      rgb(34, 211, 238);
+$neonDeepCyan:      rgb(2, 132, 199);
+
+// Purples & Violet
+$neonPurple:        rgb(124, 0, 255);
+$neonElectricViolet:rgb(138, 43, 226);
+$neonBrightViolet:  rgb(157, 0, 255);
+$neonLavendar:      rgb(199, 125, 255);
+$neonUltraViolet:   rgb(225, 0, 255);
+$neonLightLavendar: rgb(167, 139, 250);
+$neonSoftPurple:    rgb(139, 92, 246);
+$neonBrightPurple:  rgb(124, 58, 237);
+$neonLightVoliet:   rgb(192, 132, 252);
+
+// Pink & Magenta
+$neonMagenta:       rgb(255, 0, 255);
+$neonHotPink:       rgb(255, 16, 240);
+$neonPink:          rgb(255, 110, 199);
+$neonDeepPink:      rgb(255, 20, 147);
+$neonElectricPink:  rgb(255, 60, 172);
+$neonRose:          rgb(244, 114, 182);
+$neonLightPink:     rgb(236, 72, 153);
+$neonCoralPink:     rgb(251, 113, 133);
+$neonBrightRose:    rgb(244, 63, 94);
+
+// Reds
+$neonRed:           rgb(255, 7, 58);
+$neonLaserRed:      rgb(255, 49, 49);
+$neonBrightRed:     rgb(255, 36, 0);
+$neonCrimson:       rgb(255, 0, 79);
+$neonLightBrightRed:rgb(239, 68, 68);
+$neonDeepRed:       rgb(220, 38, 38);
+$neonSoftRed:       rgb(248, 113, 113);
+
+// Oranges
+$neonOrange:        rgb(255, 140, 0);
+$neonBrightOrange:  rgb(255, 106, 0);
+$neonOrangeRed:     rgb(255, 69, 0);
+$neonElectricOrange:rgb(255, 122, 0);
+$neonLightOrange:   rgb(249, 115, 22);
+$neonSoftOrange:    rgb(251, 146, 60);
+$neonDeepOrange:    rgb(234, 88, 12);
+
+// Yellows
+$neonYellow:        rgb(255, 211, 0);
+$neonLimeYellow:    rgb(252, 238, 12);
+$neonBrightYellow:  rgb(255, 255, 51);
+$neonElectricYellow:rgb(255, 247, 0);
+$neonSoftYellow:    rgb(250, 204, 21);
+$neonLightBrightYellow: rgb(234, 179, 8);
+$neonLightYellow:   rgb(253, 224, 71);
+
+// ─── Light Theme Base ────────────────────────────────────────────────────────
+$bg:          #ffffff;
+$bgSurface:   #f8faff;
+$bgCard:      #ffffff;
+$bgCode:      #f0f4ff;
+$textPrimary: #1a1a2e;
+$textSecond:  #4a4a6a;
+$textMuted:   #8888aa;
+$border:      #e8ecf8;
+$borderHover: #d0d8f0;
+
+// ─── Mixins ──────────────────────────────────────────────────────────────────
+@mixin neon-glow($color, $spread: 8px) {
+  box-shadow: 0 0 $spread rgba($color, 0.35),
+              0 0 ($spread * 2) rgba($color, 0.15);
+}
+
+@mixin neon-text-glow($color) {
+  text-shadow: 0 0 8px rgba($color, 0.6),
+               0 0 20px rgba($color, 0.3);
+}
+
+@mixin card-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba($neonElectricCyan, 0.12);
+  }
+}
+
+// ─── Global Reset ────────────────────────────────────────────────────────────
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// ─── SVG Lab Container ───────────────────────────────────────────────────────
+.svg-lab {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  background: $bg;
+  min-height: 100vh;
+  color: $textPrimary;
+
+  // subtle grid bg
+  background-image:
+    linear-gradient(rgba($neonElectricCyan, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba($neonElectricCyan, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+
+  // ─── Header ──────────────────────────────────────────────────────────────
+  &__header {
+    padding: 32px 24px 24px;
+    background: $bg;
+    border-bottom: 1px solid $border;
+    position: relative;
+    overflow: hidden;
+
+    // decorative corner blobs
+    &::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba($neonElectricCyan, 0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba($neonMagenta, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+  }
+
+  &__header-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+  }
+
+  &__title {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 10px;
+
+    &-svg {
+      @include neon-text-glow($neonElectricCyan);
+    }
+    &-exercises {
+      @include neon-text-glow($neonMagenta);
+    }
+    &-lab {
+      @include neon-text-glow($neonGreen);
+      font-size: 0.65em;
+      font-weight: 700;
+      border: 2px solid rgba($neonGreen, 0.5);
+      border-radius: 6px;
+      padding: 2px 10px;
+      background: rgba($neonGreen, 0.08);
+    }
+  }
+
+  &__subtitle {
+    font-size: 13px;
+    color: $textMuted;
+    letter-spacing: 0.3px;
+    font-weight: 400;
+  }
+
+  // ─── Tab Bar ─────────────────────────────────────────────────────────────
+  &__tabs {
+    display: flex;
+    gap: 8px;
+    padding: 16px 24px;
+    background: $bgSurface;
+    border-bottom: 1px solid $border;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar { height: 3px; }
+    &::-webkit-scrollbar-track { background: transparent; }
+    &::-webkit-scrollbar-thumb { background: $border; border-radius: 2px; }
+  }
+
+  &__tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 10px;
+    border: 1.5px solid $border;
+    background: $bgCard;
+    color: $textSecond;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.18s ease;
+    font-family: inherit;
+
+    &:hover:not(&--active) {
+      border-color: $borderHover;
+      background: $bgSurface;
+      transform: translateY(-1px);
+    }
+
+    &--active {
+      font-weight: 600;
+    }
+
+    span:first-child {
+      font-size: 16px;
+    }
+  }
+
+  &__tab-count {
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+    background: $textMuted;
+    border-radius: 20px;
+    padding: 1px 7px;
+    min-width: 22px;
+    text-align: center;
+    transition: background 0.18s;
+  }
+
+  // ─── Content Area ────────────────────────────────────────────────────────
+  &__content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  &__section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid;
+  }
+
+  &__section-emoji {
+    font-size: 28px;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $bgSurface;
+    border-radius: 12px;
+    border: 1px solid $border;
+  }
+
+  &__section-title {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+  }
+
+  &__section-desc {
+    font-size: 12px;
+    color: $textMuted;
+    margin-top: 2px;
+  }
+
+  &__exercises {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+// ─── Exercise Card ────────────────────────────────────────────────────────────
+.ex-card {
+  background: $bgCard;
+  border: 1.5px solid $border;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  @include card-lift;
+
+  &--open {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.03),
+                0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  &__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.015);
+    }
+  }
+
+  &__id {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 3px 9px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-family: 'Fira Code', 'Cascadia Code', monospace;
+  }
+
+  &__title {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: $textPrimary;
+    text-align: left;
+  }
+
+  &__chevron {
+    font-size: 11px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    padding: 16px 20px 20px;
+    border-top: 1px solid $border;
+    animation: slideDown 0.2s ease;
+  }
+
+  &__goal,
+  &__hint {
+    margin-bottom: 14px;
+
+    .label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 13px;
+      color: $textSecond;
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+  }
+
+  &__hint {
+    background: $bgSurface;
+    border-radius: 10px;
+    padding: 12px 14px;
+    border-left: 3px solid var(--accent);
+
+    p {
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 12px;
+    }
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  &__panel {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ─── Tab Buttons ─────────────────────────────────────────────────────────────
+.tab-btn {
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: 1.5px solid;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+  letter-spacing: 0.2px;
+
+  &:hover:not(&--active) {
+    background: $bgSurface;
+  }
+
+  &--active {
+    transform: scale(0.98);
+  }
+}
+
+// ─── SVG Preview Box ─────────────────────────────────────────────────────────
+.svg-preview {
+  background: $bgSurface;
+  border: 1px solid $border;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  overflow: auto;
+
+  svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+// ─── Code Block ──────────────────────────────────────────────────────────────
+.code-block {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid $border;
+
+  pre {
+    background: $bgCode;
+    padding: 18px 20px;
+    overflow-x: auto;
+    margin: 0;
+    max-height: 420px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar { width: 6px; height: 6px; }
+    &::-webkit-scrollbar-track { background: transparent; }
+    &::-webkit-scrollbar-thumb {
+      background: $borderHover;
+      border-radius: 3px;
+    }
+  }
+
+  code {
+    font-family: 'Fira Code', 'Cascadia Code', 'Source Code Pro', monospace;
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: $textPrimary;
+    white-space: pre;
+
+    // Syntax-like coloring via CSS
+    // (real highlighting needs a library like Prism/Shiki)
+  }
+}
+
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1.5px solid;
+  background: white;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+  z-index: 2;
+
+  &:hover {
+    transform: scale(0.97);
+  }
+
+  &:active {
+    transform: scale(0.94);
+  }
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+@media (max-width: 640px) {
+  .svg-lab {
+    &__content {
+      padding: 16px;
+    }
+    &__tabs {
+      padding: 12px 16px;
+    }
+    &__title {
+      flex-direction: column;
+      gap: 6px;
+    }
+  }
+
+  .ex-card {
+    &__body {
+      padding: 14px 14px 18px;
+    }
+  }
+
+  .svg-preview {
+    padding: 12px;
+
+    svg {
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
+}
+
+// ─── Neon Accent Utility Classes ─────────────────────────────────────────────
+// Use these on SVG text/shapes in SCSS modules:
+// .neon-cyan    { color: $neonElectricCyan; }
+// .neon-magenta { color: $neonMagenta; }
+// .neon-green   { color: $neonGreen; }
+// etc.
+
+.neon-cyan    { color: $neonElectricCyan;  }
+.neon-magenta { color: $neonMagenta;       }
+.neon-green   { color: $neonGreen;         }
+.neon-yellow  { color: $neonYellow;        }
+.neon-orange  { color: $neonOrange;        }
+.neon-purple  { color: $neonPurple;        }
+.neon-pink    { color: $neonPink;          }
+.neon-red     { color: $neonRed;           }
