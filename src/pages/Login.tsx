@@ -11,9 +11,9 @@ import type { AuthError } from "firebase/auth";
 import { selectUser, selectInitialising, clearError } from "../app/authSlice";
 import {
   useSignInMutation, useSignUpMutation,
-  useGoogleSignInMutation, useForgotPasswordMutation,
+  useGoogleSignInMutation,
+  //  useForgotPasswordMutation,
 } from "../api/authApi";
-import type { SerializableUser } from "../models/Auth.types";
 import { useAppDispatch, useAppSelector } from "../app/store";
 import { useNavigate } from "react-router-dom";
 
@@ -346,39 +346,39 @@ const SignUp: FC<{ onSwitch:(p:Panel)=>void }> = ({ onSwitch }) => {
 };
 
 // ── Forgot password ───────────────────────────────────────────────────────────
-const ForgotPass: FC<{ onSwitch:(p:Panel)=>void }> = ({ onSwitch }) => {
-  const [email, setEmail] = useState('');
-  const [sent, setSent]   = useState(false);
-  const [forgotPassword, { isLoading, error }] = useForgotPasswordMutation();
+// const ForgotPass: FC<{ onSwitch:(p:Panel)=>void }> = ({ onSwitch }) => {
+//   const [email, setEmail] = useState('');
+//   const [sent, setSent]   = useState(false);
+//   const [forgotPassword, { isLoading, error }] = useForgotPasswordMutation();
 
-  return (
-    <div>
-      {sent ? (
-        <div style={{ textAlign:'center', padding:'20px 0' }}>
-          <div style={{ fontSize:'2.5rem', marginBottom:12 }}>📬</div>
-          <p style={{ color:C.cyan, fontFamily:'Orbitron,sans-serif', fontSize:'0.78rem', letterSpacing:'0.1em', marginBottom:8 }}>RESET LINK SENT</p>
-          <p style={{ color:C.dim, fontSize:'0.78rem', fontFamily:'Exo 2,sans-serif', marginBottom:20 }}>Check your inbox at <strong style={{color:C.text}}>{email}</strong></p>
-          <PrimaryBtn label="BACK TO SIGN IN" onClick={()=>onSwitch('signin')} />
-        </div>
-      ) : (
-        <>
-          <p style={{ fontSize:'0.82rem', color:C.dim, fontFamily:'Exo 2,sans-serif', marginBottom:20, lineHeight:1.7 }}>
-            Enter your email and we'll send you a reset link.
-          </p>
-          {error && <ErrBanner msg={friendlyErr(error)} />}
-          <Field label="Email Address" type="email" value={email} onChange={e=>setEmail(e.target.value)}
-            placeholder="you@domain.com"
-            icon={<svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>}
-          />
-          <PrimaryBtn label="SEND RESET LINK" loading={isLoading} onClick={async()=>{ await forgotPassword(email); setSent(true); }} />
-          <p style={{ textAlign:'center', fontSize:'0.78rem', color:C.dim, marginTop:14, fontFamily:'Exo 2,sans-serif' }}>
-            <span className="link-neon" onClick={()=>onSwitch('signin')} style={{ color:C.cyan }}>← Back to sign in</span>
-          </p>
-        </>
-      )}
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       {sent ? (
+//         <div style={{ textAlign:'center', padding:'20px 0' }}>
+//           <div style={{ fontSize:'2.5rem', marginBottom:12 }}>📬</div>
+//           <p style={{ color:C.cyan, fontFamily:'Orbitron,sans-serif', fontSize:'0.78rem', letterSpacing:'0.1em', marginBottom:8 }}>RESET LINK SENT</p>
+//           <p style={{ color:C.dim, fontSize:'0.78rem', fontFamily:'Exo 2,sans-serif', marginBottom:20 }}>Check your inbox at <strong style={{color:C.text}}>{email}</strong></p>
+//           <PrimaryBtn label="BACK TO SIGN IN" onClick={()=>onSwitch('signin')} />
+//         </div>
+//       ) : (
+//         <>
+//           <p style={{ fontSize:'0.82rem', color:C.dim, fontFamily:'Exo 2,sans-serif', marginBottom:20, lineHeight:1.7 }}>
+//             Enter your email and we'll send you a reset link.
+//           </p>
+//           {error && <ErrBanner msg={friendlyErr(error)} />}
+//           <Field label="Email Address" type="email" value={email} onChange={e=>setEmail(e.target.value)}
+//             placeholder="you@domain.com"
+//             icon={<svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>}
+//           />
+//           <PrimaryBtn label="SEND RESET LINK" loading={isLoading} onClick={async()=>{ await forgotPassword(email); setSent(true); }} />
+//           <p style={{ textAlign:'center', fontSize:'0.78rem', color:C.dim, marginTop:14, fontFamily:'Exo 2,sans-serif' }}>
+//             <span className="link-neon" onClick={()=>onSwitch('signin')} style={{ color:C.cyan }}>← Back to sign in</span>
+//           </p>
+//         </>
+//       )}
+//     </div>
+//   );
+// };
 
 // ── Panel meta ───────────────────────────────────────────────────────────────
 const PANEL_META: Record<Panel,{title:string;sub:string;color:string}> = {
@@ -559,7 +559,7 @@ export default function LoginPage() {
 
             {panel === 'signin' && <SignIn onSwitch={setPanel} />}
             {panel === 'signup' && <SignUp onSwitch={setPanel} />}
-            {panel === 'forgot' && <ForgotPass onSwitch={setPanel} />}
+            {/* {panel === 'forgot' && <ForgotPass onSwitch={setPanel} />} */}
 
             {/* Footer */}
             <div style={{ marginTop:20, paddingTop:14, borderTop:'1px solid #f0f2fa', display:'flex', alignItems:'center', justifyContent:'center', gap:7 }}>

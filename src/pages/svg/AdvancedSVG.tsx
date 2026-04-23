@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactElement } from "react";
 
 /* ─────────────────────────────────────────────
    TYPES
@@ -7,7 +7,7 @@ interface Demo {
   title: string;
   desc: string;
   code: string;
-  svg: () => JSX.Element;
+  svg: () => ReactElement;
 }
 interface Section {
   id: string;
@@ -1091,7 +1091,7 @@ const foreignDemos: Demo[] = [
         <ellipse cx="200" cy="48" rx="35" ry="20" fill="#10b981" opacity="0.8"/>
         <text x="10" y="90" fontSize="9" fill="#475569">↑ SVG shapes</text>
         <foreignObject x="10" y="98" width="260" height="90">
-          <div xmlns="http://www.w3.org/1999/xhtml" style={{
+          <div style={{
             padding:"10px 12px",
             background:"rgba(99,102,241,0.15)",
             borderRadius:"8px",

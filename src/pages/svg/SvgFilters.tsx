@@ -544,7 +544,7 @@ const SVGFilters = () => {
         gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
         gap: 14,
       }}>
-        {visible.map((f, i) => {
+        {visible.map((f) => {
           const idx = filters.indexOf(f);
           const isActive = selected === idx;
           const catStyle = categoryColors[f.category] || { bg: "#f3f4f6", text: "#374151" };

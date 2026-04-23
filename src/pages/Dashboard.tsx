@@ -1,26 +1,25 @@
-import React from 'react';
-import { Box, Grid, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Box, Typography } from '@mui/material';
+// import { useNavigate } from 'react-router-dom';
 
 const CYAN    = '#00b4d8';
 const MAGENTA = '#d400c8';
-const LIME    = '#5cb800';
-const PURPLE  = '#6e00e6';
+// const LIME    = '#5cb800';
+// const PURPLE  = '#6e00e6';
 
-const STATS = [
-  { label: 'Components', value: '48',   change: '+12 this week', up: true,  color: CYAN,    bg: 'rgba(0,180,216,0.07)',    icon: '⬡' },
-  { label: 'Themes',     value: '6',    change: '+2 this week',  up: true,  color: MAGENTA, bg: 'rgba(212,0,200,0.07)',    icon: '◈' },
-  { label: 'Tokens',     value: '320',  change: '+40 updated',   up: true,  color: LIME,    bg: 'rgba(92,184,0,0.07)',     icon: '◆' },
-  { label: 'Build Time', value: '1.2s', change: '-0.3s faster',  up: true,  color: PURPLE,  bg: 'rgba(110,0,230,0.07)',    icon: '⚡' },
-];
+// const STATS = [
+//   { label: 'Components', value: '48',   change: '+12 this week', up: true,  color: CYAN,    bg: 'rgba(0,180,216,0.07)',    icon: '⬡' },
+//   { label: 'Themes',     value: '6',    change: '+2 this week',  up: true,  color: MAGENTA, bg: 'rgba(212,0,200,0.07)',    icon: '◈' },
+//   { label: 'Tokens',     value: '320',  change: '+40 updated',   up: true,  color: LIME,    bg: 'rgba(92,184,0,0.07)',     icon: '◆' },
+//   { label: 'Build Time', value: '1.2s', change: '-0.3s faster',  up: true,  color: PURPLE,  bg: 'rgba(110,0,230,0.07)',    icon: '⚡' },
+// ];
 
-const QUICK_LINKS = [
-  { label: 'Custom Loader', route: '/customised-loader', color: CYAN,    bg: 'rgba(0,180,216,0.06)',  desc: 'Animated loader components' },
-  { label: 'Dashboard',     route: '/dashboard',         color: MAGENTA, bg: 'rgba(212,0,200,0.06)', desc: 'Overview & analytics' },
-];
+// const QUICK_LINKS = [
+//   { label: 'Custom Loader', route: '/customised-loader', color: CYAN,    bg: 'rgba(0,180,216,0.06)',  desc: 'Animated loader components' },
+//   { label: 'Dashboard',     route: '/dashboard',         color: MAGENTA, bg: 'rgba(212,0,200,0.06)', desc: 'Overview & analytics' },
+// ];
 
 export default function Dashboard() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <Box sx={{ p: { xs: 2, md: 3 }, minHeight: '100%' }}>
 
@@ -44,9 +43,9 @@ export default function Dashboard() {
       </Box>
 
       {/* Stat cards */}
-      <Grid container spacing={2.5} sx={{ mb: 4 }}>
+      {/* <Grid container spacing={2.5} sx={{ mb: 4 }}>
         {STATS.map(s => (
-          <Grid item xs={12} sm={6} lg={3} key={s.label}>
+          <Grid xs={12} sm={6} lg={3} key={s.label}>
             <Box sx={{
               p: 2.5, borderRadius: 3, bgcolor: '#fff',
               border: `1.5px solid ${s.color}22`,
@@ -90,16 +89,16 @@ export default function Dashboard() {
             </Box>
           </Grid>
         ))}
-      </Grid>
+      </Grid> */}
 
       {/* Quick access */}
-      <Box sx={{ mb: 3 }}>
+      {/* <Box sx={{ mb: 3 }}>
         <Typography sx={{ fontFamily: 'Orbitron, sans-serif', fontSize: '0.68rem', color: CYAN, letterSpacing: '0.2em', textTransform: 'uppercase', mb: 2 }}>
           Quick Access
         </Typography>
         <Grid container spacing={2}>
           {QUICK_LINKS.map(link => (
-            <Grid item xs={12} sm={6} key={link.label}>
+            <Grid xs={12} sm={6} key={link.label}>
               <Box onClick={() => navigate(link.route)} sx={{
                 p: 2.5, borderRadius: 2.5, cursor: 'pointer', bgcolor: '#fff',
                 border: `1.5px solid ${link.color}18`,
@@ -124,7 +123,7 @@ export default function Dashboard() {
             </Grid>
           ))}
         </Grid>
-      </Box>
+      </Box> */}
 
       {/* Status bar */}
       <Box sx={{

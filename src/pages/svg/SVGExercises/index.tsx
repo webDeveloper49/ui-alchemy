@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, type ReactElement } from "react";
 import "../../../styles/neonColorPalette.scss";
 
 /* ─── Types ─────────────────────────────────────── */
@@ -10,7 +10,7 @@ interface Exercise {
   goal: string;
   hint: string;
   code: string;
-  render: () => JSX.Element;
+  render: () => ReactElement;
 }
 
 /* ─── Code Block ─────────────────────────────────── */
@@ -832,12 +832,12 @@ const polarToCartesian = (cx: number, cy: number, r: number, angleDeg: number) =
   const rad = ((angleDeg - 90) * Math.PI) / 180;
   return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
 };
-const describeArc = (cx: number, cy: number, r: number, startAngle: number, endAngle: number) => {
-  const s = polarToCartesian(cx, cy, r, startAngle);
-  const e = polarToCartesian(cx, cy, r, endAngle);
-  const largeArc = endAngle - startAngle > 180 ? 1 : 0;
-  return `M ${s.x} ${s.y} A ${r} ${r} 0 ${largeArc} 1 ${e.x} ${e.y}`;
-};
+// const describeArc = (cx: number, cy: number, r: number, startAngle: number, endAngle: number) => {
+//   const s = polarToCartesian(cx, cy, r, startAngle);
+//   const e = polarToCartesian(cx, cy, r, endAngle);
+//   const largeArc = endAngle - startAngle > 180 ? 1 : 0;
+//   return `M ${s.x} ${s.y} A ${r} ${r} 0 ${largeArc} 1 ${e.x} ${e.y}`;
+// };
 
 const chartExercises: Exercise[] = [
   {
@@ -845,36 +845,37 @@ const chartExercises: Exercise[] = [
     title: "3D Donut Chart — arc math + depth extrusion",
     goal: "Build a donut chart where each segment is extruded downward to create a 3D effect. Math: convert data percentages into arc angles using 2π·ratio formula.",
     hint: `Math for pie/donut:
-• total = sum of all values
-• each slice angle = (value / total) × 360°
-• arc start angle = cumulative angle of previous slices
-• polarToCartesian(cx, cy, r, angle) → {x, y}
-  x = cx + r × cos(angle in radians)
-  y = cy + r × sin(angle in radians)
-3D depth: draw a second arc shifted by +depthY, connect with lines.`,
-    code: `// Math helpers
-const polarToCartesian = (cx, cy, r, deg) => {
-  const rad = ((deg - 90) * Math.PI) / 180;
-  return { x: cx + r * Math.cos(rad),
-           y: cy + r * Math.sin(rad) };
-};
+    • total = sum of all values
+    • each slice angle = (value / total) × 360°
+    • arc start angle = cumulative angle of previous slices
+    • polarToCartesian(cx, cy, r, angle) → {x, y}
+      x = cx + r × cos(angle in radians)
+      y = cy + r × sin(angle in radians)
+    3D depth: draw a second arc shifted by +depthY, connect with lines.
+    `,
+    // code: `// Math helpers
+    // const polarToCartesian = (cx, cy, r, deg) => {
+    //   const rad = ((deg - 90) * Math.PI) / 180;
+    //   return { x: cx + r * Math.cos(rad),
+    //           y: cy + r * Math.sin(rad) };
+    // };
 
-const data = [
-  { label:"React",  value:40, color:"rgb(0,245,255)" },
-  { label:"Vue",    value:25, color:"rgb(255,0,255)" },
-  { label:"Svelte", value:20, color:"rgb(57,255,20)" },
-  { label:"Angular",value:15, color:"rgb(255,211,0)" },
-];
+    // const data = [
+    //   { label:"React",  value:40, color:"rgb(0,245,255)" },
+    //   { label:"Vue",    value:25, color:"rgb(255,0,255)" },
+    //   { label:"Svelte", value:20, color:"rgb(57,255,20)" },
+    //   { label:"Angular",value:15, color:"rgb(255,211,0)" },
+    // ];
 
-// Convert to angles
-const total = data.reduce((s,d) => s+d.value, 0);
-let startAngle = 0;
-const slices = data.map(d => {
-  const angle = (d.value / total) * 360;
-  const slice = { ...d, startAngle, endAngle: startAngle + angle };
-  startAngle += angle;
-  return slice;
-});`,
+    // // Convert to angles
+    // const total = data.reduce((s,d) => s+d.value, 0);
+    // let startAngle = 0;
+    // const slices = data.map(d => {
+    //   const angle = (d.value / total) * 360;
+    //   const slice = { ...d, startAngle, endAngle: startAngle + angle };
+    //   startAngle += angle;
+    //   return slice;
+    // });`,
     render: () => {
       const data = [
         { label: "React",   value: 40, color: "rgb(0,245,255)"  },
@@ -907,8 +908,8 @@ const slices = data.map(d => {
             if (clampEnd <= clampStart) return null;
             const s1o = polarToCartesian(cx, cy, outerR, clampStart);
             const e1o = polarToCartesian(cx, cy, outerR, clampEnd);
-            const s1i = polarToCartesian(cx, cy, innerR, clampStart);
-            const e1i = polarToCartesian(cx, cy, innerR, clampEnd);
+            // const s1i = polarToCartesian(cx, cy, innerR, clampStart);
+            // const e1i = polarToCartesian(cx, cy, innerR, clampEnd);
             const la = clampEnd - clampStart > 180 ? 1 : 0;
             return (
               <path key={`d${i}`}
@@ -924,7 +925,7 @@ const slices = data.map(d => {
             const si = polarToCartesian(cx, cy, innerR, s.startAngle);
             const ei = polarToCartesian(cx, cy, innerR, s.endAngle);
             const la = s.endAngle - s.startAngle > 180 ? 1 : 0;
-            const mid = polarToCartesian(cx, cy, (outerR + innerR) / 2, (s.startAngle + s.endAngle) / 2);
+            // const mid = polarToCartesian(cx, cy, (outerR + innerR) / 2, (s.startAngle + s.endAngle) / 2);
             return (
               <g key={i}>
                 <path
@@ -952,37 +953,37 @@ const slices = data.map(d => {
       );
     },
     code: `// Complete 3D Donut Chart math
-const polarToCartesian = (cx, cy, r, deg) => {
-  const rad = ((deg - 90) * Math.PI) / 180;
-  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
-};
-const data = [
-  { label:"React",   value:40, color:"rgb(0,245,255)" },
-  { label:"Vue",     value:25, color:"rgb(255,0,255)" },
-  { label:"Svelte",  value:20, color:"rgb(57,255,20)" },
-  { label:"Angular", value:15, color:"rgb(255,211,0)" },
-];
-const cx=140, cy=100, outerR=80, innerR=44, depth=18;
-const total = data.reduce((s,d) => s+d.value, 0);
-let start = 0;
-const slices = data.map(d => {
-  const angle = (d.value/total)*360;
-  const sl = {...d, startAngle:start, endAngle:start+angle};
-  start += angle;
-  return sl;
-});
-// Render each slice:
-slices.map(s => {
-  const so = polarToCartesian(cx,cy,outerR, s.startAngle);
-  const eo = polarToCartesian(cx,cy,outerR, s.endAngle);
-  const si = polarToCartesian(cx,cy,innerR, s.startAngle);
-  const ei = polarToCartesian(cx,cy,innerR, s.endAngle);
-  const la = s.endAngle - s.startAngle > 180 ? 1 : 0;
-  return \`M \${so.x} \${so.y}
-    A \${outerR} \${outerR} 0 \${la} 1 \${eo.x} \${eo.y}
-    L \${ei.x} \${ei.y}
-    A \${innerR} \${innerR} 0 \${la} 0 \${si.x} \${si.y} Z\`;
-})`,
+    const polarToCartesian = (cx, cy, r, deg) => {
+      const rad = ((deg - 90) * Math.PI) / 180;
+      return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+    };
+    const data = [
+      { label:"React",   value:40, color:"rgb(0,245,255)" },
+      { label:"Vue",     value:25, color:"rgb(255,0,255)" },
+      { label:"Svelte",  value:20, color:"rgb(57,255,20)" },
+      { label:"Angular", value:15, color:"rgb(255,211,0)" },
+    ];
+    const cx=140, cy=100, outerR=80, innerR=44, depth=18;
+    const total = data.reduce((s,d) => s+d.value, 0);
+    let start = 0;
+    const slices = data.map(d => {
+      const angle = (d.value/total)*360;
+      const sl = {...d, startAngle:start, endAngle:start+angle};
+      start += angle;
+      return sl;
+    });
+    // Render each slice:
+    slices.map(s => {
+      const so = polarToCartesian(cx,cy,outerR, s.startAngle);
+      const eo = polarToCartesian(cx,cy,outerR, s.endAngle);
+      const si = polarToCartesian(cx,cy,innerR, s.startAngle);
+      const ei = polarToCartesian(cx,cy,innerR, s.endAngle);
+      const la = s.endAngle - s.startAngle > 180 ? 1 : 0;
+      return \`M \${so.x} \${so.y}
+        A \${outerR} \${outerR} 0 \${la} 1 \${eo.x} \${eo.y}
+        L \${ei.x} \${ei.y}
+        A \${innerR} \${innerR} 0 \${la} 0 \${si.x} \${si.y} Z\`;
+    })`,
   },
   {
     id: "C-02",
@@ -1120,7 +1121,8 @@ const areaPath = smoothPath(pts)
         { name: "Users",    color: "rgb(57,255,20)", values: [50,40,60,55,75,65,80,70,95] },
       ];
       const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep"];
-      const PL = 40, PT = 20, PB = 30, W = 360, H = 150;
+      const PL = 40, PT = 20, W = 360, H = 150;
+      // const PB = 30;
       const minVal = 0, maxVal = 100;
       const scX = (i: number) => PL + (i / (months.length - 1)) * W;
       const scY = (v: number) => PT + H - ((v - minVal) / (maxVal - minVal)) * H;
@@ -1792,7 +1794,7 @@ then child elements are relative to that origin.`,
             <ellipse cx="0" cy="0" rx="34" ry="28" fill="url(#mmGlove)" stroke="rgb(255,211,0)" strokeWidth="2" filter="url(#mmGlow)">
               <animateTransform attributeName="transform" type="rotate" values="-10;10;-10" dur="1.8s" repeatCount="indefinite"/>
             </ellipse>
-            {[[-22,-22,-30,-40],[-8,-26,-10,-46],[8,-26,10,-46],[22,-22,30,-40]].map(([cx,cy,x2,y2],i)=>(
+            {[[-22,-22,-30,-40],[-8,-26,-10,-46],[8,-26,10,-46],[22,-22,30,-40]].map(([cx,cy],i)=>(
               <ellipse key={i} cx={cx} cy={cy} rx="9" ry="14" fill="url(#mmGlove)" stroke="rgb(255,211,0)" strokeWidth="1.5"
                 transform={`rotate(${(i-1.5)*18} ${cx} ${cy})`} filter="url(#mmGlow)">
                 <animateTransform attributeName="transform" type="rotate" values={`${(i-1.5)*18-10} ${cx} ${cy};${(i-1.5)*18+10} ${cx} ${cy};${(i-1.5)*18-10} ${cx} ${cy}`} dur="1.8s" repeatCount="indefinite"/>

@@ -35,7 +35,7 @@ const initialState: AuthState = {
   initialising: true,
   error:        null,
   roles: [],
-  tenantId: null,
+  tenantId: "",
 };
 
 // ── Thunk: subscribe to Firebase auth state on app boot ───────────────────────
