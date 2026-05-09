@@ -1,38 +1,161 @@
-// constants/Menu.constants.ts
-// ─────────────────────────────────────────────────────────────────────────────
-// roles:     [] → all roles;  ['Admin'] → Admin only
-// tenantIds: [] → all tenants; ['T1','T2'] → those tenants only
-// ─────────────────────────────────────────────────────────────────────────────
-
 import type { MenuItem } from "../models/Menu.models";
 
-
-
 export const MENUITEMS: MenuItem[] = [
-  {
-    label: "Custom Components",
-    icon: "user-shield",
-    roles:     [],
-    tenantIds: [],                          // all tenants
-    children: [
-      {
-        label: "Loader",
-        icon: "sliders",
-        roles:     [],
-        tenantIds: [],
-        component: "CustomisedLoader",
-        route: "/customised-loader"
-      },
-    ],
-  },
+  // ─── Dashboard ─────────────────────────────────────────────
   {
     label: "Dashboard",
     icon: "sliders",
-    roles:     [],
+    roles: [],
     tenantIds: [],
     component: "Dashboard",
-    route: '/dashboard'
+    route: "/dashboard",
   },
-  
 
+  // ─── Custom Components ─────────────────────────────────────
+  {
+    label: "Custom Components",
+    icon: "user-shield",
+    roles: [],
+    tenantIds: [],
+    children: [
+      {
+        label: "Loader",
+        icon: "loader",
+        roles: [],
+        tenantIds: [],
+        component: "CustomisedLoader",
+        route: "/customised-loader",
+      },
+      {
+        label: "Custom SVG",
+        icon: "image",
+        roles: [],
+        tenantIds: [],
+        component: "CustomisedSVG",
+        route: "/customised-svg",
+      },
+      {
+        label: "SVG Filters",
+        icon: "filter",
+        roles: [],
+        tenantIds: [],
+        component: "SVGFilters",
+        route: "/svg-filters",
+      },
+      {
+        label: "Advanced SVG",
+        icon: "aperture",
+        roles: [],
+        tenantIds: [],
+        component: "AdvancedSVG",
+        route: "/advanced-svg",
+      },
+      {
+        label: "SVG Exercises",
+        icon: "activity",
+        roles: [],
+        tenantIds: [],
+        component: "SVGExercises",
+        route: "/svg-exercises",
+      },
+    ],
+  },
+
+  // ─── Projects (IMPORTANT GROUP) ────────────────────────────
+  {
+    label: "Projects",
+    icon: "folder",
+    roles: [],
+    tenantIds: [],
+    children: [
+      {
+        label: "Counter",
+        icon: "hash",
+        roles: [],
+        tenantIds: [],
+        component: "Counter",
+        route: "/projects/counter",
+      },
+      {
+        label: "Books CRUD",
+        icon: "book",
+        roles: [],
+        tenantIds: [],
+        component: "BooksCRUD",
+        route: "/projects/booksCRUD",
+      },
+      {
+        label: "Todo List",
+        icon: "check-square",
+        roles: [],
+        tenantIds: [],
+        component: "Todolist",
+        route: "/projects/todolist",
+      },
+      {
+        label: "Cricket Score",
+        icon: "activity",
+        roles: [],
+        tenantIds: [],
+        component: "CricketScore",
+        route: "/projects/cricketscore",
+      },
+      {
+        label: "Countries",
+        icon: "globe",
+        roles: [],
+        tenantIds: [],
+        component: "Countries",
+        route: "/projects/countries",
+      },
+      {
+        label: "Bill Generation",
+        icon: "file-text",
+        roles: [],
+        tenantIds: [],
+        component: "BillGeneration",
+        route: "/projects/billGeneration",
+      },
+      {
+        label: "Daily Planner",
+        icon: "calendar",
+        roles: [],
+        tenantIds: [],
+        component: "DailyPlanner",
+        route: "/projects/dailyPlanner",
+      },
+      {
+        label: "Food Billing",
+        icon: "shopping-cart",
+        roles: [],
+        tenantIds: [],
+        component: "FoodBilling",
+        route: "/projects/foodBilling",
+      },
+      {
+        label: "Async Activity",
+        icon: "cpu",
+        roles: [],
+        tenantIds: [],
+        component: "InfoAsyncActivity",
+        route: "/projects/infoAsyncActivity",
+      },
+      {
+        label: "Registration",
+        icon: "user-plus",
+        roles: [],
+        tenantIds: [],
+        component: "Registration",
+        route: "/projects/registration",
+      },
+      {
+        label: "Student Info",
+        icon: "users",
+        roles: [],
+        tenantIds: [],
+        component: "StudentInfo",
+        route: "/projects/studentInfo",
+      },
+    ],
+  },
 ];

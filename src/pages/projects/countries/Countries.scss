@@ -1,0 +1,29 @@
+.countries{
+    background-color: bisque;
+    &__list{
+        display: inline-flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        &__country{
+            border:2px solid rgba(255,255,100,0.9);
+            width:200px;margin:3px;
+            display:flex;
+            flex-direction: row;
+            align-items: stretch;
+            &__name{
+                align-self:center;
+                border-bottom:1px solid rgba(0,0,0,0.2);
+                font-size: 12px;
+                font-variant: small-caps;
+                overflow:hidden;
+                word-break: break-all;
+                text-overflow: ellipsis;
+            }
+            &__flag{
+                width:80px;
+                height:80px;
+                align-self:center;
+            }
+        }
+    }
+}

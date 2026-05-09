@@ -556,6 +556,15 @@ export default function LoginPage() {
                 {meta.sub}
               </p>
             </div>
+            <button className="btn-neon-light" onClick={()=>{navigate('/dashboard')}} style={{
+              width:'100%', padding:'12px',
+              background:'#fff', border:'1.5px solid #e4e8f5', borderRadius:10,
+              color:C.text, fontFamily:'Exo 2,sans-serif', fontWeight:500,
+              fontSize:'0.84rem', cursor: 'pointer',
+              display:'flex', alignItems:'center', justifyContent:'center', gap:10,
+              boxShadow:'0 2px 10px rgba(0,0,0,0.06)',
+              opacity: 1,
+            } as CSSProperties}>START UI-ALCHEMY</button>
 
             {panel === 'signin' && <SignIn onSwitch={setPanel} />}
             {panel === 'signup' && <SignUp onSwitch={setPanel} />}

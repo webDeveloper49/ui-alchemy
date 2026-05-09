@@ -1,15 +1,103 @@
 @use '../../../styles/neonColorPalette' as *;
+
+
 .my-container {
     height: 100%;
-    padding-inline: 50px;
+    padding: 50px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0px; // optional spacing
+    row-gap: 20px; // optional spacing
+    column-gap: 20px;
 }
 
 .svg-item {
+    margin: 0px;
     width: 100%;
-    aspect-ratio: 1 / 1; 
-    display: block; // removes inline gap issue
-    border: 2px solid $neonBrightYellow;
+    aspect-ratio: 1 / 1;
+    display: block;
+    
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transform-style:preserve-3d;
+    transition:transform 0.6s ease;
+    box-shadow:
+        2px -5px 1px $neonBrightRed inset,
+        -2px 5px 1px color-mix(in srgb, $neonBrightRed 50%, transparent),
+        2px -2px 0px color-mix(in srgb, $neonCoralPink, transparent);
+
+
+
+    &:active{
+        transform: translateY(6px);
+        border: none;
+        box-shadow:
+            0px 0px 0px $neonBrightRed inset,
+            0px 0px 0px color-mix(in srgb, $neonCoralPink, transparent);
+    }
+    &:hover{
+        border: 1px solid $neonBrightOrange;
+    }
+
+    svg {
+        position: relative;
+        z-index: 1;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0; right: 0;
+        width: 30%; height: 30%;
+        background:
+            radial-gradient(
+                circle at top right,
+                rgba($neonElectricPink, 0.3) 0%,
+                rgba($neonBrightYellow, 0.3) 40%,
+                transparent 70%
+            );
+        opacity:1;
+        pointer-events: none;
+        filter: blur(10px);
+        z-index: 0;
+    }
+
+
+     // ── lighting effect — shimmer sweep ──
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            115deg,
+            transparent        30%,
+            rgba($neonBrightCyan, 0.12) 45%,
+            rgba(255,255,255, 0.08)    50%,
+            rgba($neonBrightCyan, 0.12) 55%,
+            transparent        70%
+        );
+        background-size: 250% 100%;
+        background-position: 200% 0;
+        animation: light-sweep 1.5s ease-in-out infinite;
+        border-radius: inherit;
+        pointer-events: none;
+        z-index: 3;
+    }
+
+    
 }
+
+@keyframes light-sweep {
+    0%   { background-position: 200% 0; opacity: 0; }
+    20%  { opacity: 1; }
+    80%  { opacity: 1; }
+    100% { background-position: -200% 0; opacity: 0; }
+}
+
+@keyframes spotlight-pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.15); }
+}
+
+
+

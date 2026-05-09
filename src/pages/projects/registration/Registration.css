@@ -1,0 +1,39 @@
+input{
+    border:2px solid blue;
+    border-radius: 5%;
+    width:250px;
+    padding:6px;
+    margin-top: 5px;
+    margin-bottom: 5px;               
+    margin-left: auto;
+    margin-right: auto;
+}
+button{
+    max-width:10%;
+    margin-top:10px;
+    margin-left:auto;
+    margin-right: auto;
+    background-color: aqua;
+    color: black;
+    border:2px solid black;
+    padding:5px;
+    box-sizing:border-box;
+    word-wrap: wrap;
+
+}
+button:focus{
+    opacity:0.5;
+    height:50px;
+    width:150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.table-class{
+    border:2px solid black;
+    border-collapse: collapse;
+    
+}
+.flex-container{
+    display:flex;
+    flex-direction:column;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Box, Collapse, IconButton, List, ListItemButton,
@@ -14,6 +15,21 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LoopIcon from '@mui/icons-material/Loop';
 import AgricultureIcon from '@mui/icons-material/Agriculture';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
+
+
+import FolderIcon from '@mui/icons-material/Folder';
+import CalculateIcon from '@mui/icons-material/Calculate';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import ChecklistIcon from '@mui/icons-material/Checklist';
+import SportsCricketIcon from '@mui/icons-material/SportsCricket';
+import PublicIcon from '@mui/icons-material/Public';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import EventNoteIcon from '@mui/icons-material/EventNote';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+import MemoryIcon from '@mui/icons-material/Memory';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import GroupsIcon from '@mui/icons-material/Groups';
+import { faSprayCanSparkles } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
   collapsed:    boolean;
@@ -32,14 +48,33 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { label: 'Dashboard',          icon: <DashboardIcon />, route: '/dashboard' },
   { label: 'Custom Components',  icon: <AutoAwesomeIcon />, children: [
-    { label: 'Loader', icon: <LoopIcon />, route: '/customised-loader' },
-    { label: 'SVG', icon: <AgricultureIcon/>, route:'/customised-svg'},
+    { label: 'Loader', icon: <LoopIcon />, route: '/customised/loader' },
+    { label: 'SVG', icon: <AgricultureIcon/>, route:'/customised/svg'},
   ]},
   { label: 'Tutorials',  icon: <AutoAwesomeIcon />, children: [
-    { label: 'SVG Filters', icon: <AgricultureIcon/>, route:'/svg-filters'},
-    { label: 'Advanced SVG', icon:<AutoFixHighIcon/>, route:'/advanced-svg'},
-    { label: 'SVG Exercises', icon:<AutoFixHighIcon/>, route:'/svg-exercises'},
+    { label: 'SVG Filters', icon: <AgricultureIcon/>, route:'/tutorials/svg-filters'},
+    { label: 'Advanced SVG', icon:<AutoFixHighIcon/>, route:'/tutorials/advanced-svg'},
+    { label: 'SVG Exercises', icon:<AutoFixHighIcon/>, route:'/tutorials/svg-exercises'},
+    { label: 'ThreeJSGuide',  icon: <FontAwesomeIcon icon={faSprayCanSparkles} />, route:'/tutorials/threejs-guide'},
   ]},
+  // ─── Projects (NEW) ─────────────────────────────
+  {
+    label: 'Projects',
+    icon: <FolderIcon />,
+    children: [
+      { label: 'Counter', icon: <CalculateIcon />, route: '/projects/counter' },
+      { label: 'Books CRUD', icon: <MenuBookIcon />, route: '/projects/booksCRUD' },
+      { label: 'Todo List', icon: <ChecklistIcon />, route: '/projects/todolist' },
+      { label: 'Cricket Score', icon: <SportsCricketIcon />, route: '/projects/cricketscore' },
+      { label: 'Countries', icon: <PublicIcon />, route: '/projects/countries' },
+      { label: 'Bill Generation', icon: <ReceiptIcon />, route: '/projects/billGeneration' },
+      { label: 'Daily Planner', icon: <EventNoteIcon />, route: '/projects/dailyPlanner' },
+      { label: 'Food Billing', icon: <RestaurantIcon />, route: '/projects/foodBilling' },
+      { label: 'Async Activity', icon: <MemoryIcon />, route: '/projects/infoAsyncActivity' },
+      { label: 'Registration', icon: <PersonAddIcon />, route: '/projects/registration' },
+      { label: 'Student Info', icon: <GroupsIcon />, route: '/projects/studentInfo' },
+    ]
+  }
 ];
 
 const CYAN    = '#00b4d8';

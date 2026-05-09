@@ -1,0 +1,105 @@
+{
+  "books": [
+    {
+      "title": "axios-patch",
+      "author": "axios",
+      "id": 1
+    },
+    {
+      "title": "backend",
+      "author": "me",
+      "id": 3
+    },
+    {
+      "title": "http-post",
+      "author": "post",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "title": "fetch-patch",
+      "author": "fetch"
+    },
+    {
+      "title": "jquery-patch",
+      "author": "jquery",
+      "id": 11
+    },
+    {
+      "title": "redux-toolkit-query",
+      "author": "redux-toolkit",
+      "id": 12
+    },
+    {
+      "title": "redux-toolkit-query",
+      "author": "redux-toolkit",
+      "id": 13
+    }
+  ],
+  "fooditems": [
+    {
+      "name": "idly",
+      "imageSrc": "https://res.cloudinary.com/dgw743xwu/image/upload/v1690605559/idly_oxksqn.jpg",
+      "price": 20,
+      "id": 1
+    },
+    {
+      "name": "chapathi",
+      "imageSrc": "https://res.cloudinary.com/dgw743xwu/image/upload/v1690603635/chapathi_ce9rlh.jpg",
+      "price": 30,
+      "id": 2
+    },
+    {
+      "name": "poori",
+      "imageSrc": "https://res.cloudinary.com/dgw743xwu/image/upload/v1690603218/poori_gpt30d.jpg",
+      "price": 20,
+      "id": 3
+    },
+    {
+      "name": "upma",
+      "imageSrc": "https://res.cloudinary.com/dgw743xwu/image/upload/v1690603217/upma_hnluqh.jpg",
+      "price": 30,
+      "id": 4
+    },
+    {
+      "name": "dosa",
+      "imageSrc": "https://res.cloudinary.com/dgw743xwu/image/upload/v1690603217/paperdosa_edswqt.jpg",
+      "price": 50,
+      "id": 5
+    },
+    {
+      "name": "utthappam",
+      "imageSrc": "https://res.cloudinary.com/dgw743xwu/image/upload/v1690603217/utthappam_h6ey6l.jpg",
+      "price": 50,
+      "id": 6
+    },
+    {
+      "name": "parota",
+      "imageSrc": "https://res.cloudinary.com/dgw743xwu/image/upload/v1690603925/parota_csiyeq.jpg",
+      "price": 45,
+      "id": 7
+    },
+    {
+      "name": "poha",
+      "imageSrc": "https://res.cloudinary.com/dgw743xwu/image/upload/v1690603635/poha_lkzdo2.jpg",
+      "price": 35,
+      "id": 8
+    },
+    {
+      "name": "semiya",
+      "imageSrc": "https://res.cloudinary.com/dgw743xwu/image/upload/v1690603635/semiya_pulao_t3vuxz.jpg",
+      "price": 25,
+      "id": 9
+    },
+    {
+      "name": "vada",
+      "imageSrc": "https://res.cloudinary.com/dgw743xwu/image/upload/v1690603217/vada_b1hvgy.jpg",
+      "price": 20,
+      "id": 10
+    }
+  ],
+  "foodCart": [
+  ],
+  "foodBills": [
+  ]
+}
