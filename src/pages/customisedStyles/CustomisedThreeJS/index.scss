@@ -1,0 +1,50 @@
+.my-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .my-canvas-renderer {
+    position: absolute;  // ← canvas fills the container behind
+    inset: 0;
+    z-index: 1;
+    
+
+    canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  .content-layer {
+    position: relative;  // ← sits in normal flow, above canvas
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // color: white;
+    text-align: center;
+    pointer-events: none;;
+
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+  }
+}

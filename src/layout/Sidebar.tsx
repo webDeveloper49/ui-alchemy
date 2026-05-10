@@ -29,7 +29,7 @@ import RestaurantIcon from '@mui/icons-material/Restaurant';
 import MemoryIcon from '@mui/icons-material/Memory';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import GroupsIcon from '@mui/icons-material/Groups';
-import { faSprayCanSparkles } from '@fortawesome/free-solid-svg-icons';
+import { faRoadSpikes, faSprayCanSparkles, faSun } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
   collapsed:    boolean;
@@ -50,6 +50,8 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Custom Components',  icon: <AutoAwesomeIcon />, children: [
     { label: 'Loader', icon: <LoopIcon />, route: '/customised/loader' },
     { label: 'SVG', icon: <AgricultureIcon/>, route:'/customised/svg'},
+    { label: 'Three JS', icon:<FontAwesomeIcon icon={faRoadSpikes} />, route:'/customised/threejs'},
+    { label: 'ThreeJS SolarSystem', icon:<FontAwesomeIcon icon={faSun} />, route:'/customised/threejsSolar'}
   ]},
   { label: 'Tutorials',  icon: <AutoAwesomeIcon />, children: [
     { label: 'SVG Filters', icon: <AgricultureIcon/>, route:'/tutorials/svg-filters'},

@@ -10,12 +10,11 @@ const Dashboard        = lazy(() => import('./pages/Dashboard'));
 const NotFound         = lazy(() => import('./pages/NotFound'));
 const UnauthorizedPage = lazy(() => import('./pages/UnauthorizedPage'));
 
-const CustomisedLoader = lazy(
-  () => import('./pages/customisedStyles/CustomisedLoader')
-);
-const CustomisedSVG = lazy(
-  () => import('./pages/customisedStyles/CustomisedSVG')
-);
+const CustomisedLoader = lazy(() => import('./pages/customisedStyles/CustomisedLoader'));
+const CustomisedSVG = lazy(() => import('./pages/customisedStyles/CustomisedSVG'));
+const CustomisedThreeJS = lazy(() => import('./pages/customisedStyles/CustomisedThreeJS'));
+const SolarSystem = lazy(()=>import('./pages/customisedStyles/CustomisedThreeJS/SoalrSystem'));
+
 
 const AdvancedSVG  = lazy(() => import('./pages/svg/AdvancedSVG'));
 const SVGFilters   = lazy(() => import('./pages/svg/SvgFilters'));
@@ -30,18 +29,10 @@ const Countries         = lazy(() => import('./pages/projects/countries/Countrie
 const BillGeneration    = lazy(() => import('./pages/projects/billGeneration/BillGeneration'));
 const DailyPlanner      = lazy(() => import('./pages/projects/dailyPlanner/DailyPlanner'));
 const FoodBilling       = lazy(() => import('./pages/projects/foodBilling/FoodBilling'));
-const InfoAsyncActivity = lazy(
-  () => import('./pages/projects/infoAsyncActivity/InfoAsyncActivity')
-);
-const Registration = lazy(
-  () => import('./pages/projects/registration/Registration')
-);
-const StudentInfo = lazy(
-  () => import('./pages/projects/studentInfo/StudentInfo')
-);
-const BooksCRUD = lazy(
-  () => import('./pages/projects/booksCRUD/BooksCRUD')
-);
+const InfoAsyncActivity = lazy(() => import('./pages/projects/infoAsyncActivity/InfoAsyncActivity'));
+const Registration = lazy(() => import('./pages/projects/registration/Registration'));
+const StudentInfo = lazy(() => import('./pages/projects/studentInfo/StudentInfo'));
+const BooksCRUD = lazy(() => import('./pages/projects/booksCRUD/BooksCRUD'));
 
 const Loader = () => (
   <div
@@ -89,7 +80,7 @@ const router = createBrowserRouter(
           element: withSuspense(Dashboard),
         },
         {
-          path: 'customized',
+          path: 'customised',
           children:[
             {
               path: 'loader',
@@ -98,6 +89,14 @@ const router = createBrowserRouter(
             {
               path: 'svg',
               element: withSuspense(CustomisedSVG),
+            },
+            {
+              path: 'threejs',
+              element: withSuspense(CustomisedThreeJS),
+            },
+            {
+              path: 'threejsSolar',
+              element: withSuspense(SolarSystem),
             },
           ]
         },

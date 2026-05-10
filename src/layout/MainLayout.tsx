@@ -35,7 +35,7 @@ export default function MainLayout() {
 
   const [open, setOpen] = React.useState(!isMobile);
   React.useEffect(() => { setOpen(!isMobile); }, [isMobile]);
-  React.useEffect(() => { if (isMobile) setOpen(false); }, [location.pathname]);
+  React.useEffect(() => { if (isMobile) setOpen(false); }, [location.pathname, isMobile]);
 
   const [logOut] = useLogOutMutation();
   const handleLogout = async () => {
@@ -52,7 +52,7 @@ export default function MainLayout() {
     <>
       <Helmet><title>UI-Alchemy | {title}</title></Helmet>
 
-      <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: '#f2f4fb' }}>
+      <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden', bgcolor: '#f2f4fb' }}>
         <CssBaseline />
 
         {/* Subtle background dot grid */}
@@ -63,7 +63,7 @@ export default function MainLayout() {
           opacity: 0.7,
         }} />
 
-        {/* Sidebar Drawer */}
+        {/* Sidebar Drawer — unchanged */}
         <Drawer
           variant={isMobile ? 'temporary' : 'permanent'}
           open={isMobile ? open : true}
@@ -99,18 +99,26 @@ export default function MainLayout() {
         </Drawer>
 
         {/* Main content */}
-        <Box component="main" sx={{
-          flexGrow: 1, minHeight: '100vh', position: 'relative', zIndex: 1,
-          display: 'flex', flexDirection: 'column', minWidth: 0,
-          transition: 'margin 0.25s cubic-bezier(0.4,0,0.2,1)',
-        }}>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',       // ← remove height: '100vh' here, parent already sets it
+            position: 'relative',
+            zIndex: 1,
+            minWidth: 0,
+            transition: 'margin 0.25s cubic-bezier(0.4,0,0.2,1)',
+          }}
+        >
           <PageHeader
             title={title}
             onLogout={handleLogout}
             onMenuToggle={() => setOpen(v => !v)}
             sidebarOpen={open}
           />
-          <Box sx={{ flex: 1, overflow: 'hidden' }}>
+          <Box sx={{ flex: 1, overflow: 'auto', minHeight: 0 }}>
             <Outlet />
           </Box>
         </Box>

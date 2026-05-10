@@ -44,7 +44,7 @@ export default function PageHeader({ title, onLogout, onMenuToggle }: PageHeader
       px: { xs: 1.5, sm: 2.5 }, gap: 1,
       bgcolor: '#ffffff',
       borderBottom: '1px solid #e4e8f5',
-      flexShrink: 0, position: 'sticky', top: 0, zIndex: 1200,
+      flexShrink: 0, zIndex: 1200,
       boxShadow: '0 2px 16px rgba(0,180,216,0.07)',
       '&::after': {
         content: '""', position: 'absolute', bottom: 0, left: 0, right: 0, height: '2px',
