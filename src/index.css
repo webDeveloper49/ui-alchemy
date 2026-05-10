@@ -192,7 +192,7 @@ html, body, #root {
         @media only screen and (max-width:300px){
             width:15%;
         };
-    };
+    }
 .projects__menu__button{
     background-color: rgba(100,100,255,0.8);
     border:2px solid rgba(100,100,255,0.9);
@@ -204,8 +204,8 @@ html, body, #root {
         overflow:hidden;
         word-break:keep-all;
         text-overflow: ellipsis;
-    };    
-};
+    };   
+}
 .projects__menu__navbar{
     width:inherit;
     @media only screen and (max-width:300px){
@@ -214,8 +214,8 @@ html, body, #root {
         overflow:hidden;
         word-break:keep-all;
         text-overflow: ellipsis;
-    };
-};
+    }
+}
 .projects__display{
     border:2px solid var(--grey);
     width:75%;

@@ -18,17 +18,17 @@ import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 
 
 import FolderIcon from '@mui/icons-material/Folder';
-import CalculateIcon from '@mui/icons-material/Calculate';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import ChecklistIcon from '@mui/icons-material/Checklist';
-import SportsCricketIcon from '@mui/icons-material/SportsCricket';
-import PublicIcon from '@mui/icons-material/Public';
-import ReceiptIcon from '@mui/icons-material/Receipt';
-import EventNoteIcon from '@mui/icons-material/EventNote';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
-import MemoryIcon from '@mui/icons-material/Memory';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import GroupsIcon from '@mui/icons-material/Groups';
+// import CalculateIcon from '@mui/icons-material/Calculate';
+// import MenuBookIcon from '@mui/icons-material/MenuBook';
+// import ChecklistIcon from '@mui/icons-material/Checklist';
+// import SportsCricketIcon from '@mui/icons-material/SportsCricket';
+// import PublicIcon from '@mui/icons-material/Public';
+// import ReceiptIcon from '@mui/icons-material/Receipt';
+// import EventNoteIcon from '@mui/icons-material/EventNote';
+// import RestaurantIcon from '@mui/icons-material/Restaurant';
+// import MemoryIcon from '@mui/icons-material/Memory';
+// import PersonAddIcon from '@mui/icons-material/PersonAdd';
+// import GroupsIcon from '@mui/icons-material/Groups';
 import { faRoadSpikes, faSprayCanSparkles, faSun } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
@@ -64,17 +64,17 @@ const NAV_ITEMS: NavItem[] = [
     label: 'Projects',
     icon: <FolderIcon />,
     children: [
-      { label: 'Counter', icon: <CalculateIcon />, route: '/projects/counter' },
-      { label: 'Books CRUD', icon: <MenuBookIcon />, route: '/projects/booksCRUD' },
-      { label: 'Todo List', icon: <ChecklistIcon />, route: '/projects/todolist' },
-      { label: 'Cricket Score', icon: <SportsCricketIcon />, route: '/projects/cricketscore' },
-      { label: 'Countries', icon: <PublicIcon />, route: '/projects/countries' },
-      { label: 'Bill Generation', icon: <ReceiptIcon />, route: '/projects/billGeneration' },
-      { label: 'Daily Planner', icon: <EventNoteIcon />, route: '/projects/dailyPlanner' },
-      { label: 'Food Billing', icon: <RestaurantIcon />, route: '/projects/foodBilling' },
-      { label: 'Async Activity', icon: <MemoryIcon />, route: '/projects/infoAsyncActivity' },
-      { label: 'Registration', icon: <PersonAddIcon />, route: '/projects/registration' },
-      { label: 'Student Info', icon: <GroupsIcon />, route: '/projects/studentInfo' },
+      // { label: 'Counter', icon: <CalculateIcon />, route: '/projects/counter' },
+      // { label: 'Books CRUD', icon: <MenuBookIcon />, route: '/projects/booksCRUD' },
+      // { label: 'Todo List', icon: <ChecklistIcon />, route: '/projects/todolist' },
+      // { label: 'Cricket Score', icon: <SportsCricketIcon />, route: '/projects/cricketscore' },
+      // { label: 'Countries', icon: <PublicIcon />, route: '/projects/countries' },
+      // { label: 'Bill Generation', icon: <ReceiptIcon />, route: '/projects/billGeneration' },
+      // { label: 'Daily Planner', icon: <EventNoteIcon />, route: '/projects/dailyPlanner' },
+      // { label: 'Food Billing', icon: <RestaurantIcon />, route: '/projects/foodBilling' },
+      // { label: 'Async Activity', icon: <MemoryIcon />, route: '/projects/infoAsyncActivity' },
+      // { label: 'Registration', icon: <PersonAddIcon />, route: '/projects/registration' },
+      // { label: 'Student Info', icon: <GroupsIcon />, route: '/projects/studentInfo' },
     ]
   }
 ];

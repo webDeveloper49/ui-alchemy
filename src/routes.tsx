@@ -22,17 +22,17 @@ const SVGExercises = lazy(() => import('./pages/svg/SVGExercises'));
 const ThreeJSGuide = lazy(() => import ('./pages/threejs/Guide'));
 
 // Projects
-const Counter           = lazy(() => import('./pages/projects/counter/Counter'));
-const Todolist          = lazy(() => import('./pages/projects/todolist/Todolist'));
-const CricketScore      = lazy(() => import('./pages/projects/cricketscore/CricketScore'));
-const Countries         = lazy(() => import('./pages/projects/countries/Countries'));
-const BillGeneration    = lazy(() => import('./pages/projects/billGeneration/BillGeneration'));
-const DailyPlanner      = lazy(() => import('./pages/projects/dailyPlanner/DailyPlanner'));
-const FoodBilling       = lazy(() => import('./pages/projects/foodBilling/FoodBilling'));
-const InfoAsyncActivity = lazy(() => import('./pages/projects/infoAsyncActivity/InfoAsyncActivity'));
-const Registration = lazy(() => import('./pages/projects/registration/Registration'));
-const StudentInfo = lazy(() => import('./pages/projects/studentInfo/StudentInfo'));
-const BooksCRUD = lazy(() => import('./pages/projects/booksCRUD/BooksCRUD'));
+// const Counter           = lazy(() => import('./pages/projects/counter/Counter'));
+// const Todolist          = lazy(() => import('./pages/projects/todolist/Todolist'));
+// const CricketScore      = lazy(() => import('./pages/projects/cricketscore/CricketScore'));
+// const Countries         = lazy(() => import('./pages/projects/countries/Countries'));
+// const BillGeneration    = lazy(() => import('./pages/projects/billGeneration/BillGeneration'));
+// const DailyPlanner      = lazy(() => import('./pages/projects/dailyPlanner/DailyPlanner'));
+// const FoodBilling       = lazy(() => import('./pages/projects/foodBilling/FoodBilling'));
+// const InfoAsyncActivity = lazy(() => import('./pages/projects/infoAsyncActivity/InfoAsyncActivity'));
+// const Registration = lazy(() => import('./pages/projects/registration/Registration'));
+// const StudentInfo = lazy(() => import('./pages/projects/studentInfo/StudentInfo'));
+// const BooksCRUD = lazy(() => import('./pages/projects/booksCRUD/BooksCRUD'));
 
 const Loader = () => (
   <div
@@ -124,50 +124,50 @@ const router = createBrowserRouter(
         {
           path: 'projects',
           children: [
-            {
-              path: 'counter',
-              element: withSuspense(Counter),
-            },
-            {
-              path: 'booksCRUD',
-              element: withSuspense(BooksCRUD),
-            },
-            {
-              path: 'todolist',
-              element: withSuspense(Todolist),
-            },
-            {
-              path: 'cricketscore',
-              element: withSuspense(CricketScore),
-            },
-            {
-              path: 'countries',
-              element: withSuspense(Countries),
-            },
-            {
-              path: 'billGeneration',
-              element: withSuspense(BillGeneration),
-            },
-            {
-              path: 'dailyPlanner',
-              element: withSuspense(DailyPlanner),
-            },
-            {
-              path: 'foodBilling',
-              element: withSuspense(FoodBilling),
-            },
-            {
-              path: 'infoAsyncActivity',
-              element: withSuspense(InfoAsyncActivity),
-            },
-            {
-              path: 'registration',
-              element: withSuspense(Registration),
-            },
-            {
-              path: 'studentInfo',
-              element: withSuspense(StudentInfo),
-            },
+            // {
+            //   path: 'counter',
+            //   element: withSuspense(Counter),
+            // },
+            // {
+            //   path: 'booksCRUD',
+            //   element: withSuspense(BooksCRUD),
+            // },
+            // {
+            //   path: 'todolist',
+            //   element: withSuspense(Todolist),
+            // },
+            // {
+            //   path: 'cricketscore',
+            //   element: withSuspense(CricketScore),
+            // },
+            // {
+            //   path: 'countries',
+            //   element: withSuspense(Countries),
+            // },
+            // {
+            //   path: 'billGeneration',
+            //   element: withSuspense(BillGeneration),
+            // },
+            // {
+            //   path: 'dailyPlanner',
+            //   element: withSuspense(DailyPlanner),
+            // },
+            // {
+            //   path: 'foodBilling',
+            //   element: withSuspense(FoodBilling),
+            // },
+            // {
+            //   path: 'infoAsyncActivity',
+            //   element: withSuspense(InfoAsyncActivity),
+            // },
+            // {
+            //   path: 'registration',
+            //   element: withSuspense(Registration),
+            // },
+            // {
+            //   path: 'studentInfo',
+            //   element: withSuspense(StudentInfo),
+            // },
           ],
         },
 
